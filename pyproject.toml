@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "darwin-os"
+version = "0.1.0"
+description = "A self-evolving 2D control simulator: neuroevolution + STL-style safety + digital twin + hot swap."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+    "pymunk>=6.4",
+    "deap>=1.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-timeout>=2.1"]
+
+[tool.setuptools]
+packages = ["darwin_os", "darwin_os.tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["darwin_os/tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "headless: test runs without a display server",
+    "slow: a test that takes more than 30 seconds",
+]
